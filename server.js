@@ -67,9 +67,10 @@ function gateKeeper(req, res, next) {
   // your code should replace the line below
   const headerValue=req.get('x-username-and-password');
   const queryFormat=queryString.parse(headerValue);
-  const finder= USERS.find(user => user.userName===queryFormat.user);
-  console.log(res.send(headerValue));
-  
+  const useree= queryFormat.user || null;
+  const passy= queryFormat.pass || null;
+  req.user= USERS.find((usr, idx) => usr.userName===useree && usr.password===passy);
+  //console.log(res.json(req.user.lastName));
   next();
 }
 
